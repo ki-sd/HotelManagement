@@ -1,0 +1,5 @@
+# OCI 데이터베이스 접속 정보
+# 주의: 진짜 db.properties 파일을 만들어 아래 양식을 채우고, 절대 깃허브에 올리지 마세요!
+db.url=jdbc:oracle:thin:@(description=...여기에_클라우드_주소_입력...)
+db.user=유저_이름
+db.pwd=여기에_비밀번호_입력
