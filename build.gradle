@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'war'
 }
 
 group = 'org.example'
@@ -15,15 +16,12 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     // lombok
-    compileOnly 'org.projectlombok:lombok:1.18.32'
-    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+    compileOnly 'org.projectlombok:lombok:1.18.46'
+    annotationProcessor 'org.projectlombok:lombok:1.18.46'
 
     // Servlet API (서블릿)
     compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
 
-    // Embedded Tomcat
-    implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.20'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.20' // JSP를 화면단으로 쓸 경우 추가
 
     // OJDBC
     implementation 'com.oracle.database.jdbc:ojdbc11:23.3.0.23.09'

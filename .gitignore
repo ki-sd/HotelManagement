@@ -1,0 +1,22 @@
+# 빌드 결과물
+.gradle/
+build/
+out/
+
+# IDE 설정 파일
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse 찌꺼기
+.settings/
+.classpath
+.project
+
+# DB 접속 정보
+src/main/resources/db.properties
+
+# OS 임시 파일
+.DS_Store
+Thumbs.db
