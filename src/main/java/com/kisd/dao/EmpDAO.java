@@ -37,4 +37,16 @@ public class EmpDAO {
         }
         return list;
     }
+
+    public EmpVO empLoginData(String id,String pwd){
+        EmpVO vo=new EmpVO();
+        String sql="";
+        try(Connection conn=DBUtil.getConnection();
+            PreparedStatement ps=conn.prepareStatement(sql);){
+            ResultSet rs=ps.executeQuery();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return vo;
+    }
 }
