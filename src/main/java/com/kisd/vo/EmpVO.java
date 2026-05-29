@@ -20,7 +20,7 @@ import java.util.Date;
 @Data
 public class EmpVO {
     private int eno,deptno,rankno,statuscode;
-    private String ename,sex,phone,email,strBirth,strReg,addr1,addr2,isAdmin,id,pwd;
+    private String ename,sex,phone,email,strBirth,strReg,addr1,addr2,isAdmin,id,pwd,msg;
     private Date birthdate,regdate;
     private DeptVO dvo=new DeptVO();
     private EmpStatusVO esvo=new EmpStatusVO();
