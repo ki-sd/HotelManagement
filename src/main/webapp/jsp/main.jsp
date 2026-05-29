@@ -1,4 +1,4 @@
-<%@ page import="com.kisd.util.DBUtil" %><%--
+<%@ page import="com.kisd.commons.DBUtil" %><%--
   Created by IntelliJ IDEA.
   User: sist8
   Date: 2026-05-21

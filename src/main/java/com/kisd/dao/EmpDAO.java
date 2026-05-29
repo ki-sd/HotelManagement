@@ -1,6 +1,6 @@
 package com.kisd.dao;
 
-import com.kisd.util.DBUtil;
+import com.kisd.commons.DBUtil;
 import com.kisd.vo.*;
 
 import java.util.*;
