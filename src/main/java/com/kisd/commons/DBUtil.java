@@ -1,36 +1,30 @@
 package com.kisd.commons;
 
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import java.sql.*;
 import java.io.*;
 import java.util.*;
 
 public class DBUtil {
-    private static String USER;
-    private static String PWD;
-    private static String URL;
+
+    private static SqlSessionFactory sqlSessionFactory;
 
     static {
-        try (InputStream is = DBUtil.class.getClassLoader().getResourceAsStream("db.properties")) {
-            Properties props = new Properties();
-            props.load(is);
+        try {
+            String resource = "config.xml";
+            InputStream inputStream = Resources.getResourceAsStream(resource);
 
-            URL = props.getProperty("db.url");
-            USER = props.getProperty("db.user");
-            PWD = props.getProperty("db.pwd");
-
-            Class.forName("oracle.jdbc.OracleDriver");
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-
-    public static Connection getConnection(){
-        Connection conn=null;
-        try{
-            conn=DriverManager.getConnection(URL,USER,PWD);
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
-        return conn;
+    public static SqlSessionFactory getSqlSessionFactory() {
+        return sqlSessionFactory;
     }
+
 }

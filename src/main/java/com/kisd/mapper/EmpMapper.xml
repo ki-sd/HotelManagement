@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kisd.mapper.EmpMapper">
+    <select id="empListData" resultType="EmpVO" parameterType="int">
+        SELECT eno,ename,sex,rank,dname,phone,TO_CHAR(regdate,'YYYY-MM-DD') AS regdate,status
+        FROM emp e
+        JOIN emprank r ON e.rankno=r.rankno
+        JOIN empstatus es ON e.statuscode=es.statuscode
+        JOIN dept d ON e.deptno=d.deptno
+        ORDER BY eno
+        OFFSET #{start} ROWS FETCH NEXT 20 ROWS ONLY
+    </select>
+    <select id="empTotalPage" resultType="int">
+        SELECT CEIL(COUNT(*)/20.0)
+        FROM emp
+    </select>
+    <select id="empLoginData" resultType="EmpVO" parameterType="String">
+        SELECT eno,ename,sex,phone,email,TO_CHAR(birth_date,'yyyy-mm-dd') AS birth_date,TO_CHAR(regdate,'yyyy-mm-dd') AS regdate,addr1,addr2,rank,dname,status,isadmin,id,pwd
+        FROM emp e JOIN emprank r
+        ON e.rankno=r.rankno
+        JOIN dept d ON e.deptno=d.deptno
+        JOIN empstatus s ON e.statuscode=s.statuscode
+        WHERE id=#{id}
+    </select>
+</mapper>

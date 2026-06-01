@@ -24,7 +24,13 @@ dependencies {
 
 
     // OJDBC
-    implementation 'com.oracle.database.jdbc:ojdbc11:23.3.0.23.09'
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc11:23.3.0.23.09'
+
+    // MyBatis
+    implementation 'org.mybatis:mybatis:3.5.15'
+
+    // jBcrypt
+    implementation 'org.mindrot:jbcrypt:0.4'
 }
 
 test {
