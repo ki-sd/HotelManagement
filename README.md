@@ -76,7 +76,7 @@ src/main/resources/ 경로에 있는 db_properties_sample 파일의 이름을 db
 본인의 환경에 맞게 오라클 DB 접속 정보를 기입합니다.
 
 ```Properties
-    # db.properties
+# db.properties
     
 url=jdbc:oracle:thin:@localhost:1521:XE
 driver=oracle.jdbc.OracleDriver
