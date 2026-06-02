@@ -19,9 +19,12 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.46'
     annotationProcessor 'org.projectlombok:lombok:1.18.46'
 
-    // Servlet API (서블릿)
+    // Servlet API
     compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
 
+    // JSTL
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
 
     // OJDBC
     runtimeOnly 'com.oracle.database.jdbc:ojdbc11:23.3.0.23.09'
