@@ -13,7 +13,7 @@ public class EmpDAO {
     public List<EmpVO> empListData(int start){
         List<EmpVO> list=new ArrayList<EmpVO>();
         try(SqlSession session=DBUtil.getSqlSessionFactory().openSession()){
-            list=session.selectList("boardListData",start);
+            list=session.selectList("empListData",start);
         }catch(Exception ex){
             ex.printStackTrace();
         }
@@ -34,7 +34,7 @@ public class EmpDAO {
         try(SqlSession session=DBUtil.getSqlSessionFactory().openSession()){
             EmpVO dbVo=session.selectOne("empLoginData",id);
             if(dbVo!=null){
-                String dbPwd=vo.getPwd();
+                String dbPwd=dbVo.getPwd();
                 boolean isMatch= BCrypt.checkpw(pwd,dbPwd);
                 if(isMatch){
                     vo=dbVo;

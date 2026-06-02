@@ -56,7 +56,7 @@
     <tbody>
     <%
         EmpDAO dao=new EmpDAO();
-        List<EmpVO> list=dao.empListData();
+        List<EmpVO> list=dao.empListData(1);
         for(EmpVO vo:list){
     %>
     <tr>
