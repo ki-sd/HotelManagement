@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kisd.mapper.CustomerMapper">
     <select id="custListData" resultType="CustomerVO" parameterType="int">
-        SELECT cno,cname,sex,email,dname,phone,TO_CHAR(regdate,'YYYY-MM-DD') AS regdate,TO_CHAR(birth_date,'yyyy-mm-dd') AS birth_date,grade,status
+        SELECT cno,cname,sex,email,phone,TO_CHAR(regdate,'YYYY-MM-DD') AS regdate,TO_CHAR(birth_date,'yyyy-mm-dd') AS birth_date,grade,status
         FROM customer c
             JOIN grade g ON c.gno=g.gno
         ORDER BY cno
