@@ -5,6 +5,15 @@
 <configuration>
 
     <properties resource="db.properties" />
+    <typeAliases>
+        <typeAlias type="com.kisd.vo.EmpVO" alias="EmpVO"/>
+        <typeAlias type="com.kisd.vo.CustomerVO" alias="CustomerVO"/>
+
+        <typeAlias type="com.kisd.vo.DeptVO" alias="DeptVO"/>
+        <typeAlias type="com.kisd.vo.EmpRankVO" alias="EmpRankVO"/>
+        <typeAlias type="com.kisd.vo.EmpStatusVO" alias="EmpStatusVO"/>
+
+    </typeAliases>
 
     <environments default="development">
         <environment id="development">
@@ -12,15 +21,15 @@
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}"/>
                 <property name="url" value="${url}"/>
-                <property name="username" value="${username}"/>
-                <property name="password" value="${password}"/>
+                <property name="username" value="${user}"/>
+                <property name="password" value="${pwd}"/>
             </dataSource>
         </environment>
     </environments>
 
     <mappers>
-        <mapper resource="com.kisd.mapper.EmpMapper.xml"/>
-        <mapper resource="com.kisd.mapper.CustomerMapper.xml"/>
+        <mapper resource="com/kisd/mapper/EmpMapper.xml"/>
+        <mapper resource="com/kisd/mapper/CustomerMapper.xml"/>
     </mappers>
 
 </configuration>

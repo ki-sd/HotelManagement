@@ -10,16 +10,17 @@ import java.sql.*;
 
 public class EmpDAO {
 
-    public List<EmpVO> empListData(int start){
+    public static List<EmpVO> empListData(int start){
         List<EmpVO> list=new ArrayList<EmpVO>();
         try(SqlSession session=DBUtil.getSqlSessionFactory().openSession()){
             list=session.selectList("empListData",start);
         }catch(Exception ex){
             ex.printStackTrace();
+            ex.getMessage();
         }
         return list;
     }
-    public int empTotalPage(){
+    public static int empTotalPage(){
         int total=0;
         try(SqlSession session=DBUtil.getSqlSessionFactory().openSession()){
             total=session.selectOne("empTotalPage");
@@ -29,7 +30,7 @@ public class EmpDAO {
         return total;
     }
 
-    public EmpVO empLoginData(String id,String pwd){
+    public static EmpVO empLoginData(String id,String pwd){
         EmpVO vo=new EmpVO();
         try(SqlSession session=DBUtil.getSqlSessionFactory().openSession()){
             EmpVO dbVo=session.selectOne("empLoginData",id);

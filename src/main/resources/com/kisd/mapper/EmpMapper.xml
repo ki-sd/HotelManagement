@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kisd.mapper.EmpMapper">
+
+    <resultMap id="empMap" type="EmpVO">
+        <result property="eno" column="eno"/>
+        <result property="ename" column="ename"/>
+        <result property="sex" column="sex"/>
+        <result property="phone" column="phone"/>
+        <result property="strReg" column="strReg"/>
+        <association property="dvo" javaType="DeptVO">
+            <result property="dname" column="dname"/>
+        </association>
+
+        <association property="ervo" javaType="EmpRankVO">
+            <result property="rank" column="rank"/>
+        </association>
+
+        <association property="esvo" javaType="EmpStatusVO">
+            <result property="status" column="status"/>
+        </association>
+    </resultMap>
+
+    <select id="empListData" resultMap="empMap" parameterType="int">
+        SELECT eno,ename,sex,rank,dname,phone,TO_CHAR(regdate,'YYYY-MM-DD') AS strReg,status
+        FROM emp e
+        JOIN emprank r ON e.rankno=r.rankno
+        JOIN empstatus es ON e.statuscode=es.statuscode
+        JOIN dept d ON e.deptno=d.deptno
+        ORDER BY eno
+        OFFSET #{start} ROWS FETCH NEXT 20 ROWS ONLY
+    </select>
+    <select id="empTotalPage" resultType="int">
+        SELECT CEIL(COUNT(*)/20.0)
+        FROM emp
+    </select>
+    <select id="empLoginData" resultType="EmpVO" parameterType="String">
+        SELECT eno,ename,sex,phone,email,TO_CHAR(birth_date,'yyyy-mm-dd') AS strBirth,TO_CHAR(regdate,'yyyy-mm-dd') AS strReg,addr1,addr2,rank,dname,status,isadmin,id,pwd
+        FROM emp e JOIN emprank r
+        ON e.rankno=r.rankno
+        JOIN dept d ON e.deptno=d.deptno
+        JOIN empstatus s ON e.statuscode=s.statuscode
+        WHERE id=#{id}
+    </select>
+</mapper>
