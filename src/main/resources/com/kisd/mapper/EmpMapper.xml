@@ -10,6 +10,13 @@
         <result property="sex" column="sex"/>
         <result property="phone" column="phone"/>
         <result property="strReg" column="strReg"/>
+        <result property="strBirth" column="strBirth"/>
+        <result property="email" column="email"/>
+        <result property="addr1" column="addr1"/>
+        <result property="addr2" column="addr2"/>
+        <result property="isadmin" column="isadmin"/>
+        <result property="id" column="id"/>
+        <result property="pwd" column="pwd"/>
         <association property="dvo" javaType="DeptVO">
             <result property="dname" column="dname"/>
         </association>
@@ -36,7 +43,7 @@
         SELECT CEIL(COUNT(*)/20.0)
         FROM emp
     </select>
-    <select id="empLoginData" resultType="EmpVO" parameterType="String">
+    <select id="empLoginData" resultType="empMap" parameterType="String">
         SELECT eno,ename,sex,phone,email,TO_CHAR(birth_date,'yyyy-mm-dd') AS strBirth,TO_CHAR(regdate,'yyyy-mm-dd') AS strReg,addr1,addr2,rank,dname,status,isadmin,id,pwd
         FROM emp e JOIN emprank r
         ON e.rankno=r.rankno

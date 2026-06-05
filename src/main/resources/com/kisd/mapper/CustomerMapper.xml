@@ -2,8 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kisd.mapper.CustomerMapper">
-    <select id="custListData" resultType="CustomerVO" parameterType="int">
-        SELECT cno,cname,sex,email,phone,TO_CHAR(regdate,'YYYY-MM-DD') AS regdate,TO_CHAR(birth_date,'yyyy-mm-dd') AS birth_date,grade,status
+    <resultMap id="custMap" type="CustomerVO">
+        <result property="cno" column="cno"/>
+        <result property="cname" column="cname"/>
+        <result property="sex" column="sex"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="strBirth" column="strBirth"/>
+        <result property="strReg" column="strReg"/>
+        <result property="addr1" column="addr1"/>
+        <result property="addr2" column="addr2"/>
+        <result property="status" column="status"/>
+        <result property="id" column="id"/>
+        <result property="pwd" column="pwd"/>
+        <association property="gvo" javaType="GradeVO">
+            <result property="grade" column="grade"/>
+        </association>
+    </resultMap>
+    <select id="custListData" resultType="custMap" parameterType="int">
+        SELECT cno,cname,sex,email,phone,TO_CHAR(regdate,'YYYY-MM-DD') AS strReg,TO_CHAR(birth_date,'yyyy-mm-dd') AS strBirth,grade,status
         FROM customer c
             JOIN grade g ON c.gno=g.gno
         ORDER BY cno
@@ -13,8 +30,8 @@
         SELECT CEIL(COUNT(*)/20.0)
         FROM customer
     </select>
-    <select id="custLoginData" resultType="CustomerVO" parameterType="String">
-        SELECT cno,cname,sex,phone,email,TO_CHAR(birth_date,'yyyy-mm-dd') AS birth_date,TO_CHAR(regdate,'yyyy-mm-dd') AS regdate,addr1,addr2,grade,status,id,pwd
+    <select id="custLoginData" resultType="custMap" parameterType="String">
+        SELECT cno,cname,sex,phone,email,TO_CHAR(birth_date,'yyyy-mm-dd') AS strBirth,TO_CHAR(regdate,'yyyy-mm-dd') AS strReg,addr1,addr2,grade,status,id,pwd
         FROM customer c
             JOIN grade g ON c.gno=g.gno
         WHERE id=#{id}
