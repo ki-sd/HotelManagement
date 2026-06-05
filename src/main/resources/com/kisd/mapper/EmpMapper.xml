@@ -43,7 +43,7 @@
         SELECT CEIL(COUNT(*)/20.0)
         FROM emp
     </select>
-    <select id="empLoginData" resultType="empMap" parameterType="String">
+    <select id="empLoginData" resultMap="empMap" parameterType="String">
         SELECT eno,ename,sex,phone,email,TO_CHAR(birth_date,'yyyy-mm-dd') AS strBirth,TO_CHAR(regdate,'yyyy-mm-dd') AS strReg,addr1,addr2,rank,dname,status,isadmin,id,pwd
         FROM emp e JOIN emprank r
         ON e.rankno=r.rankno

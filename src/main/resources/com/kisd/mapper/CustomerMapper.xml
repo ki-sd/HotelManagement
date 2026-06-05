@@ -19,7 +19,7 @@
             <result property="grade" column="grade"/>
         </association>
     </resultMap>
-    <select id="custListData" resultType="custMap" parameterType="int">
+    <select id="custListData" resultMap="custMap" parameterType="int">
         SELECT cno,cname,sex,email,phone,TO_CHAR(regdate,'YYYY-MM-DD') AS strReg,TO_CHAR(birth_date,'yyyy-mm-dd') AS strBirth,grade,status
         FROM customer c
             JOIN grade g ON c.gno=g.gno
@@ -30,7 +30,7 @@
         SELECT CEIL(COUNT(*)/20.0)
         FROM customer
     </select>
-    <select id="custLoginData" resultType="custMap" parameterType="String">
+    <select id="custLoginData" resultMap="custMap" parameterType="String">
         SELECT cno,cname,sex,phone,email,TO_CHAR(birth_date,'yyyy-mm-dd') AS strBirth,TO_CHAR(regdate,'yyyy-mm-dd') AS strReg,addr1,addr2,grade,status,id,pwd
         FROM customer c
             JOIN grade g ON c.gno=g.gno

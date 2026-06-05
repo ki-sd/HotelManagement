@@ -8,6 +8,9 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+
+    </style>
 </head>
 <body>
     <div class="table-container">
@@ -25,8 +28,8 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="vo" items="${list}">
-                <tr>
+                <c:forEach var="vo" items="${list}" varStatus="status">
+                <tr class="${status.count%2==0?'row-even':'row-odd'}">
                     <td style="text-align: center;">${vo.eno}</td>
                     <td style="text-align: center;">${vo.ename}</td>
                     <td style="text-align: center;">${vo.sex}</td>

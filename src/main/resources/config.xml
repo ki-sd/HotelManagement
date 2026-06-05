@@ -12,7 +12,7 @@
         <typeAlias type="com.kisd.vo.DeptVO" alias="DeptVO"/>
         <typeAlias type="com.kisd.vo.EmpRankVO" alias="EmpRankVO"/>
         <typeAlias type="com.kisd.vo.EmpStatusVO" alias="EmpStatusVO"/>
-
+        <typeAlias type="com.kisd.vo.GradeVO" alias="GradeVO"/>
     </typeAliases>
 
     <environments default="development">
