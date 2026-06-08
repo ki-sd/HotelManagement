@@ -273,6 +273,120 @@ a {
     font-weight: 600;
 }
 
+/* =========================================
+   고객용 메인 헤더 (Customer Header)
+   ========================================= */
+.customer-header {
+    height: 80px; /* 고급스러움을 위해 관리자단(70px)보다 약간 높게 설정 */
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    position: relative; /* 중앙 로고의 절대 배치를 위한 기준점 */
+}
+
+/* 1. 좌측 영역 */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex: 1; /* 좌우 밸런스를 맞추기 위해 공간 차지 */
+}
+
+.lang-select select {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    outline: none;
+    font-weight: 500;
+}
+
+.header-login {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.header-login:hover {
+    color: var(--primary-color);
+}
+
+/* 2. 중앙 영역 (로고) */
+.header-center {
+    /* 좌우 영역의 컨텐츠 길이에 상관없이 무조건 화면 정중앙에 고정하는 실무 기법 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.header-center .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: 2px; /* 호텔 로고 특유의 여유로운 자간 */
+}
+
+/* 3. 우측 영역 */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+    justify-content: flex-end; /* 컨텐츠를 우측으로 밀착 */
+}
+
+.header-nav {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.header-nav a {
+    font-size: 1rem;
+    color: var(--text-main);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+/* 네비게이션 호버 시 샴페인 골드 색상으로 우아하게 변경 */
+.header-nav a:hover {
+    color: var(--accent-color);
+}
+
+/* '예약' 버튼은 호텔의 핵심 전환 지점이므로 메인 컬러로 포인트 */
+.header-nav .nav-reserve {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.header-nav .nav-reserve:hover {
+    color: var(--primary-hover);
+}
+
+/* 햄버거 메뉴 (전체 메뉴) */
+.hamburger-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+    padding: 4px; /* 클릭 영역 확보 */
+}
+
+.hamburger-btn:hover {
+    color: var(--accent-color);
+}
+
 /* 얼룩말 패턴 및 호버 */
 .row-even { background-color: #FAF8F5; }
 .row-odd  { background-color: #FFFFFF; }
