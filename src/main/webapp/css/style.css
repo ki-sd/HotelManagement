@@ -396,5 +396,99 @@ a {
     cursor: pointer;
 }
 
+/* =========================================
+   메인 비주얼 슬라이더 (Crossfade 효과)
+   ========================================= */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 600px; /* 슬라이더 전체 높이 (원하는 대로 조절) */
+    overflow: hidden;
+    background-color: var(--primary-color);
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* 기본적으로 투명하게 숨김 */
+    transition: opacity 1.5s ease-in-out; /* 1.5초 동안 서서히 나타나는 고급스러운 효과 */
+    z-index: 1;
+}
+
+.slide.active {
+    opacity: 1; /* active 클래스가 붙으면 화면에 나타남 */
+    z-index: 2;
+}
+
+/* 이미지 위에 살짝 어두운 막을 씌워 글씨가 잘 보이게 함 (실무 팁) */
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* 투명도 30% 블랙 틴트 */
+}
+
+/* 슬라이드 텍스트 스타일 */
+.slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #FFFFFF;
+    z-index: 3;
+    width: 100%;
+}
+
+.slide-content h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    letter-spacing: -1px;
+}
+
+.slide-content p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+/* =========================================
+   슬라이더 좌우 화살표 버튼
+   ========================================= */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.2); /* 20% 불투명도의 검은색 배경 */
+    color: white;
+    border: none;
+    width: 48px;
+    height: 200px;
+    border-radius: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10; /* 슬라이드 이미지보다 무조건 위에 오도록 설정 */
+    transition: background-color 0.3s;
+}
+
+.slider-btn:hover {
+    background-color: rgba(0, 0, 0, 0.6); /* 마우스 호버 시 60%로 진해짐 */
+}
+
+/* 양 끝 여백 설정 */
+.prev-btn { left: 40px; }
+.next-btn { right: 40px; }
+
 .badge-success { background-color: #E6F0E9; color: var(--success); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;}
 .badge-warning { background-color: #FDF3E1; color: #B28236; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;}

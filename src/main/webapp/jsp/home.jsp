@@ -15,7 +15,7 @@
     <jsp:include page="layout/header.jsp" />
 
     <div class="content-wrapper">
-        <jsp:include page="views/empList.jsp" />
+        <jsp:include page="layout/main.jsp" />
     </div>
 
     <jsp:include page="layout/footer.jsp" />
