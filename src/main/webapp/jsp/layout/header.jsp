@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
     <title>Title</title>
@@ -14,7 +15,22 @@
                     <option value="jp">日本語</option>
                 </select>
             </div>
-            <a href="/login" class="header-login">로그인</a>
+            <c:choose>
+                <%-- 관리자 --%>
+                <c:when test="${sessionScope.user.role == 'ADMIN'}">
+                    <a href="/logout" class="header-logout">로그아웃</a>
+                    <a href="/admin" class="header-admin">관리자페이지</a>
+                </c:when>
+                <%-- 일반 회원 --%>
+                <c:when test="${not empty sessionScope.user}">
+                    <a href="/logout" class="header-logout">로그아웃</a>
+                    <a href="/mypage" class="header-mypage">마이페이지</a>
+                </c:when>
+                <%-- 비로그인 --%>
+                <c:otherwise>
+                    <a href="/login" class="header-login">로그인</a>
+                </c:otherwise>
+            </c:choose>
         </div>
 
     <div class="header-center">

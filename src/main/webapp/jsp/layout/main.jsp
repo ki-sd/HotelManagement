@@ -3,7 +3,7 @@
 <head>
     <title>Title</title>
 </head>
-<style type="text/css">
+<style>
     .hero-slider h2,p{
         cursor: default;
     }
