@@ -17,14 +17,10 @@ public class DBUtil {
         try {
             String resource = "config.xml";
             InputStream inputStream = Resources.getResourceAsStream(resource);
-
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         } catch (Exception e) {
-            System.err.println("=================================================");
-            System.err.println("🚨 MyBatis XML 파싱 실패! 진짜 원인을 확인하세요 🚨");
-            System.err.println("=================================================");
             e.printStackTrace();
-            throw new RuntimeException("MyBatis 팩토리 생성 실패: " + e.getMessage());
+            throw new RuntimeException("MyBatis 팩토리 생성 실패: "+e.getMessage());
         }
     }
     public static SqlSessionFactory getSqlSessionFactory() {

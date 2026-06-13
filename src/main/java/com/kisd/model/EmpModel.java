@@ -1,14 +1,17 @@
 package com.kisd.model;
 
+import com.kisd.controller.Controller;
+import com.kisd.controller.RequestMapping;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.*;
 import com.kisd.vo.*;
 import com.kisd.dao.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
+@Controller
 public class EmpModel {
-    public void empList(HttpServletRequest request){
+    @RequestMapping("emp/list.do")
+    public String empList(HttpServletRequest request,HttpServletResponse response){
         String strPage=request.getParameter("page");
         if(strPage==null)
             strPage="1";
@@ -22,32 +25,36 @@ public class EmpModel {
         request.setAttribute("list",list);
         request.setAttribute("start",start);
 
+        return "../emp/list.jsp";
     }
-    public void empLogin(HttpServletRequest request, HttpServletResponse response){
+    @RequestMapping("emp/login.do")
+    public String empLogin(HttpServletRequest request, HttpServletResponse response){
         String id=request.getParameter("id");
         String pwd=request.getParameter("pwd");
         EmpVO vo=EmpDAO.empLoginData(id,pwd);
-        Boolean isLogin=false;
+
+        if(vo==null){
+            request.setAttribute("state","UNKNOWN");
+            return "../emp/login.jsp";
+        }
+
         String state="";
         String msg = (vo.getMsg() != null) ? vo.getMsg() : "";
         switch (msg) {
-            case "OK"    -> {
-                isLogin=true;
-            }
-            case "NOID"  -> {
-                state="NOID";
-            }
-            case "NOPWD" -> {
-                state="NOPWD";
-            }
-            default      -> {
-                state="UNKNOWN";
-            }
+            case "OK"    -> state="OK";
+            case "NOID"  -> state="NOID";
+            case "NOPWD" -> state="NOPWD";
+            default      -> state="UNKNOWN";
         }
-        HttpSession session= request.getSession();
-        session.setAttribute("isLogin",isLogin);
-        session.setAttribute("vo",vo);
-        request.setAttribute("state",state);
+        if("OK".equals(state)) {
+            HttpSession session = request.getSession();
+            session.setAttribute("isLogin", true);
+            session.setAttribute("vo", vo);
 
+            return "redirect:../main/main.do";
+        }else {
+            request.setAttribute("state", state);
+            return "../emp/login.jsp";
+        }
     }
 }
