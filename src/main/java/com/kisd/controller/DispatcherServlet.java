@@ -78,6 +78,10 @@ public class DispatcherServlet extends HttpServlet {
 			uri = uri.substring(1);
 		}
 
+		if (uri.contains(";")) {
+			uri = uri.substring(0, uri.indexOf(";"));
+		}
+
 		try {
 			Object obj=handlerMappingMap.get(uri);
 			Method m=handlerMethodMap.get(uri);
