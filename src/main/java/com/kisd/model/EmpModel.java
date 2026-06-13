@@ -25,21 +25,25 @@ public class EmpModel {
         request.setAttribute("list",list);
         request.setAttribute("start",start);
 
-        return "../emp/list.jsp";
+        return "/jsp/views/emp/list.jsp";
     }
     @RequestMapping("emp/login.do")
     public String empLogin(HttpServletRequest request, HttpServletResponse response){
+
         String id=request.getParameter("id");
+        if (id == null) {
+            return "/jsp/views/emp/login.jsp";
+        }
         String pwd=request.getParameter("pwd");
         EmpVO vo=EmpDAO.empLoginData(id,pwd);
 
         if(vo==null){
             request.setAttribute("state","UNKNOWN");
-            return "../emp/login.jsp";
+            return "/jsp/views/emp/login.jsp";
         }
 
         String state="";
-        String msg = (vo.getMsg() != null) ? vo.getMsg() : "";
+        String msg = (vo.getMsg()!=null)?vo.getMsg():"";
         switch (msg) {
             case "OK"    -> state="OK";
             case "NOID"  -> state="NOID";
@@ -49,12 +53,12 @@ public class EmpModel {
         if("OK".equals(state)) {
             HttpSession session = request.getSession();
             session.setAttribute("isLogin", true);
-            session.setAttribute("vo", vo);
+            session.setAttribute("user", vo);
 
-            return "redirect:../main/main.do";
+            return "redirect:/main/main.do";
         }else {
             request.setAttribute("state", state);
-            return "../emp/login.jsp";
+            return "/jsp/views/emp/login.jsp";
         }
     }
 }

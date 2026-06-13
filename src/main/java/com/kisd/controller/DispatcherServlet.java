@@ -96,7 +96,11 @@ public class DispatcherServlet extends HttpServlet {
 			if (jsp != null) {
 				if (jsp.startsWith("redirect:")) {
 					jsp = jsp.substring(jsp.indexOf(":")+1);
-					response.sendRedirect(jsp);
+					if (jsp.startsWith("/")) {
+						response.sendRedirect(request.getContextPath() + jsp);
+					} else {
+						response.sendRedirect(jsp);
+					}
 				} else {
 					RequestDispatcher rd = request.getRequestDispatcher(jsp);
 					rd.forward(request, response);

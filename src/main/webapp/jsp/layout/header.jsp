@@ -17,31 +17,31 @@
             </div>
             <c:choose>
                 <%-- 관리자 --%>
-                <c:when test="${sessionScope.user.role == 'ADMIN'}">
-                    <a href="/logout" class="header-logout">로그아웃</a>
-                    <a href="/admin" class="header-admin">관리자페이지</a>
+                <c:when test="${sessionScope.user.isAdmin == 'Y'}">
+                    <a href="${pageContext.request.contextPath}/main/logout.do" class="header-logout">로그아웃</a>
+                    <a href="${pageContext.request.contextPath}/admin/main.do" class="header-admin">관리자페이지</a>
                 </c:when>
                 <%-- 일반 회원 --%>
                 <c:when test="${not empty sessionScope.user}">
-                    <a href="/logout" class="header-logout">로그아웃</a>
-                    <a href="/mypage" class="header-mypage">마이페이지</a>
+                    <a href="${pageContext.request.contextPath}/main/logout.do" class="header-logout">로그아웃</a>
+                    <a href="${pageContext.request.contextPath}/cust/mypage.do" class="header-mypage">마이페이지</a>
                 </c:when>
                 <%-- 비로그인 --%>
                 <c:otherwise>
-                    <a href="/login" class="header-login">로그인</a>
+                    <a href="${pageContext.request.contextPath}/emp/login.do" class="header-login">로그인</a>
                 </c:otherwise>
             </c:choose>
         </div>
 
     <div class="header-center">
-        <a href="/" class="logo">호텔로고</a>
+        <a href="${pageContext.request.contextPath}/main/main.do" class="logo">호텔로고</a>
     </div>
 
     <div class="header-right">
         <nav class="header-nav">
-            <a href="/intro">호텔소개</a>
-            <a href="/rooms">객실보기</a>
-            <a href="/reserve" class="nav-reserve">예약</a>
+            <a href="${pageContext.request.contextPath}/main/intro.do">호텔소개</a>
+            <a href="${pageContext.request.contextPath}/room/rooms.do">객실보기</a>
+            <a href="${pageContext.request.contextPath}/reserve/main.do" class="nav-reserve">예약</a>
         </nav>
 
         <button class="hamburger-btn" aria-label="전체 메뉴">
