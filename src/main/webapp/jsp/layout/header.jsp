@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <header class="customer-header">
@@ -28,7 +29,7 @@
                 </c:when>
                 <%-- 비로그인 --%>
                 <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/emp/login.do" class="header-login">로그인</a>
+                    <a href="javascript:void(0);" id="openLoginModal" class="header-login">로그인</a>
                 </c:otherwise>
             </c:choose>
         </div>
@@ -52,5 +53,6 @@
     </div>
 
 </header>
+    <jsp:include page="/jsp/views/emp/login.jsp" />
 </body>
 </html>

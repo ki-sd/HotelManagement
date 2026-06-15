@@ -97,6 +97,7 @@ a {
     flex: 1;
     display: flex;
     flex-direction: column;
+    min-width: 0px;
 }
 
 .topbar {
@@ -233,6 +234,7 @@ a {
     padding: 32px;
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .page-title {
@@ -397,36 +399,31 @@ a {
 }
 
 /* =========================================
-   메인 비주얼 슬라이더 (Crossfade 효과)
+   메인 슬라이더
    ========================================= */
 .hero-slider {
+    width: 100%;
+    height: 600px;
     position: relative;
-    width: 100%;
-    height: 600px; /* 슬라이더 전체 높이 (원하는 대로 조절) */
     overflow: hidden;
-    background-color: var(--primary-color);
+    border-radius: 12px;
+    --swiper-pagination-color: lightgray;
 }
-
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.swiper-slide {
     background-size: cover;
     background-position: center;
-    opacity: 0; /* 기본적으로 투명하게 숨김 */
-    transition: opacity 1.5s ease-in-out; /* 1.5초 동안 서서히 나타나는 고급스러운 효과 */
-    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.slide.active {
-    opacity: 1; /* active 클래스가 붙으면 화면에 나타남 */
-    z-index: 2;
+.slide-content h2, .slide-content p {
+    color: white;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    cursor: default;
 }
 
 /* 이미지 위에 살짝 어두운 막을 씌워 글씨가 잘 보이게 함 (실무 팁) */
-.slide::before {
+.swiper-slide::before {
     content: '';
     position: absolute;
     top: 0;
@@ -468,7 +465,7 @@ a {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.2); /* 20% 불투명도의 검은색 배경 */
+    background-color: rgba(0, 0, 0, 0); /* 20% 불투명도의 검은색 배경 */
     color: white;
     border: none;
     width: 48px;
@@ -480,10 +477,6 @@ a {
     cursor: pointer;
     z-index: 10; /* 슬라이드 이미지보다 무조건 위에 오도록 설정 */
     transition: background-color 0.3s;
-}
-
-.slider-btn:hover {
-    background-color: rgba(0, 0, 0, 0.6); /* 마우스 호버 시 60%로 진해짐 */
 }
 
 /* 양 끝 여백 설정 */

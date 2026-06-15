@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>호텔 Example</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 
