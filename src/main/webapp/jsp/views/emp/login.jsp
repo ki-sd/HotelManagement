@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <style>
     .modal-overlay {
-        position: fixed !important; /* 브라우저 창에 딱 붙어서 따라다니게 강제 고정 */
+        position: fixed !important;
         top: 0; left: 0;
-        width: 100vw; height: 100vh; /* 화면 전체 크기 100% 차지 */
-        background: rgba(0, 0, 0, 0.6) !important; /* 뒷배경 어둡게 처리 */
+        width: 100vw; height: 100vh;
+        background: rgba(0, 0, 0, 0.6) !important;
         display: flex; justify-content: center; align-items: center;
-        z-index: 9999 !important; /* 기존 헤더나 슬라이더(z-index: 10)보다 무조건 높게 띄움 */
+        z-index: 9999 !important;
     }
     .modal-close-btn {
         position: absolute; top: 16px; right: 16px;
@@ -23,7 +23,7 @@
     .form-signin {
         width: 100%; max-width: 380px; padding: 35px 35px 45px;
         background-color: var(--surface); border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* 모달이 붕 떠 보이게 강한 그림자 부여 */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
     .form-signin-heading { margin-bottom: 30px; }
     .form-signin .form-control {
@@ -66,27 +66,23 @@
     $(() => {
         const $modal = $("#loginModalOverlay");
         const $errorMsg = $("#modalErrorMsg");
-
-        // 열기
+        
         $("#openLoginModal").on("click", () => {
             $modal.css("display", "flex");
             $errorMsg.hide();
             $("#modalLoginForm")[0].reset();
         });
 
-        // 닫기
         $("#closeLoginModal").on("click", () => {
             $modal.hide();
         });
 
-        // 바깥 영역 클릭 시 닫기
         $(window).on("click", (e) => {
             if ($(e.target).is($modal)) {
                 $modal.hide();
             }
         });
 
-        // 비동기 로그인
         $("#modalLoginForm").on("submit", (e) => {
             e.preventDefault();
 
