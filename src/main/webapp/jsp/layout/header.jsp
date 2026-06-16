@@ -4,6 +4,22 @@
 <head>
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(()=>{
+            $('.header-logout').on('click',(e)=>{
+                e.preventDefault();
+                $.ajax({
+                    type:'post',
+                    url:'${pageContext.request.contextPath}/emp/logout.do',
+                    success:(result)=>{
+                        if(result.trim()==="yes"){
+                            location.href="${pageContext.request.contextPath}/main/main.do"
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 <body>
     <header class="customer-header">
@@ -19,12 +35,17 @@
             <c:choose>
                 <%-- 관리자 --%>
                 <c:when test="${sessionScope.user.isAdmin == 'Y'}">
-                    <a href="${pageContext.request.contextPath}/main/logout.do" class="header-logout">로그아웃</a>
+                    <a href="javascript:void(0);" class="header-logout">로그아웃</a>
                     <a href="${pageContext.request.contextPath}/admin/main.do" class="header-admin">관리자페이지</a>
+                </c:when>
+                <%-- 일반 직원 --%>
+                <c:when test="${sessionScope.user.isAdmin == 'N'}">
+                    <a href="javascript:void(0);" class="header-logout">로그아웃</a>
+                    <a href="${pageContext.request.contextPath}/emp/main.do" class="header-admin">직원페이지</a>
                 </c:when>
                 <%-- 일반 회원 --%>
                 <c:when test="${not empty sessionScope.user}">
-                    <a href="${pageContext.request.contextPath}/main/logout.do" class="header-logout">로그아웃</a>
+                    <a href="javascript:void(0);" class="header-logout">로그아웃</a>
                     <a href="${pageContext.request.contextPath}/cust/mypage.do" class="header-mypage">마이페이지</a>
                 </c:when>
                 <%-- 비로그인 --%>

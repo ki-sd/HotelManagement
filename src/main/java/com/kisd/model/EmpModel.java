@@ -31,29 +31,29 @@ public class EmpModel {
     @RequestMapping("emp/login.do")
     public String empLogin(HttpServletRequest request, HttpServletResponse response){
 
-        String id = request.getParameter("id");
-        String pwd = request.getParameter("pwd");
+        String id=request.getParameter("id");
+        String pwd=request.getParameter("pwd");
 
-        EmpVO vo = EmpDAO.empLoginData(id, pwd);
+        EmpVO vo=EmpDAO.empLoginData(id, pwd);
 
-        String state = "UNKNOWN";
-        if(vo != null && vo.getMsg() != null){
+        String state="UNKNOWN";
+        if(vo!=null && vo.getMsg()!=null){
             switch (vo.getMsg()) {
-                case "OK"    -> state = "OK";
-                case "NOID"  -> state = "NOID";
-                case "NOPWD" -> state = "NOPWD";
+                case "OK"    -> state="OK";
+                case "NOID"  -> state="NOID";
+                case "NOPWD" -> state="NOPWD";
             }
         }
 
         try {
             if("OK".equals(state)) {
-                HttpSession session = request.getSession();
+                HttpSession session=request.getSession();
                 session.setAttribute("isLogin", true);
                 session.setAttribute("user", vo);
             }
 
             response.setContentType("text/plain;charset=UTF-8");
-            PrintWriter out = response.getWriter();
+            PrintWriter out=response.getWriter();
             out.write(state);
             out.flush();
 
@@ -62,5 +62,18 @@ public class EmpModel {
         }
 
         return null;
+    }
+    @RequestMapping("emp/logout.do")
+    public void empLogout(HttpServletRequest request, HttpServletResponse response){
+        HttpSession session=request.getSession();
+        session.invalidate();
+        try{
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            PrintWriter out=response.getWriter();
+            out.println("yes");
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 }
