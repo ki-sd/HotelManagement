@@ -1,16 +1,15 @@
-<%@ page import="com.kisd.model.EmpModel" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%
-    EmpModel model=new EmpModel();
-    model.empList(request);
-%>
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css">
     <style>
 
     </style>
+    <script>
+
+    </script>
 </head>
 <body>
     <div class="table-container">

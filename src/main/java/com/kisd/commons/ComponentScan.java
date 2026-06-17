@@ -1,4 +1,4 @@
-package com.kisd.controller;
+package com.kisd.commons;
 import java.util.*;
 import java.io.*;
 public class ComponentScan {

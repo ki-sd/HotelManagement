@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-	<component-scan basepackage="com.kisd.model"/>
+	<component-scan basepackage="com.kisd.controller"/>
 </beans>

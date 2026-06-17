@@ -1,4 +1,4 @@
-package com.kisd.controller;
+package com.kisd.commons;
 
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
