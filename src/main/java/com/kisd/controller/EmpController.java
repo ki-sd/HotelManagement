@@ -14,18 +14,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class EmpController {
     private EmpService empService=new EmpService();
-    @RequestMapping("emp/list.do")
-    public String empList(HttpServletRequest request, HttpServletResponse response){
-        String strPage=request.getParameter("page");
-        Map<String,Object> result=empService.getEmpList(strPage);
 
-        request.setAttribute("curpage",result.get("curpage"));
-        request.setAttribute("total",result.get("total"));
-        request.setAttribute("list",result.get("list"));
-        request.setAttribute("start",result.get("start"));
-
-        return "/jsp/views/emp/list.jsp";
-    }
     @RequestMapping("emp/login.do")
     public String empLogin(HttpServletRequest request,HttpServletResponse response){
         String id=request.getParameter("id");
@@ -60,5 +49,9 @@ public class EmpController {
         }catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+    @RequestMapping("emp/main.do")
+    public String emp_main(HttpServletRequest request,HttpServletResponse response){
+        return "/jsp/views/emp/main.jsp";
     }
 }

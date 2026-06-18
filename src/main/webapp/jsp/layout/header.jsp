@@ -34,17 +34,17 @@
             </div>
             <c:choose>
                 <%-- 관리자 --%>
-                <c:when test="${sessionScope.user.isAdmin == 'Y'}">
+                <c:when test="${sessionScope.loginEmp.isAdmin == 'Y'}">
                     <a href="javascript:void(0);" class="header-logout">로그아웃</a>
                     <a href="${pageContext.request.contextPath}/admin/main.do" class="header-admin">관리자페이지</a>
                 </c:when>
                 <%-- 일반 직원 --%>
-                <c:when test="${sessionScope.user.isAdmin == 'N'}">
+                <c:when test="${sessionScope.loginEmp.isAdmin == 'N'}">
                     <a href="javascript:void(0);" class="header-logout">로그아웃</a>
                     <a href="${pageContext.request.contextPath}/emp/main.do" class="header-admin">직원페이지</a>
                 </c:when>
                 <%-- 일반 회원 --%>
-                <c:when test="${not empty sessionScope.user}">
+                <c:when test="${not empty sessionScope.loginEmp}">
                     <a href="javascript:void(0);" class="header-logout">로그아웃</a>
                     <a href="${pageContext.request.contextPath}/cust/mypage.do" class="header-mypage">마이페이지</a>
                 </c:when>
