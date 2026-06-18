@@ -16,7 +16,7 @@
         ${empty sessionScope.loginEmp.ename ? 'Admin' : sessionScope.loginEmp.ename.substring(0,1)}
       </div>
       <div class="user-info">
-        <span class="user-name">${empty sessionScope.loginEmp.ename ? '최고관리자' : sessionScope.loginEmp.ename} 님</span>
+        <span class="user-name">${empty sessionScope.loginEmp.ename ? '관리자' : sessionScope.loginEmp.ename} 님</span>
         <span class="user-role" style="color: var(--danger); font-weight: 600;">System Admin</span>
       </div>
     </button>
